@@ -1,0 +1,9 @@
+num1=int(input("Enter first number: "))
+num2=int(input("Enter second number: "))
+print("first number before swaping =",num1)
+print("second number before swaping =",num2)
+num1=num1+num2
+num2=num1-num2
+num1=num1-num2
+print("first number after swaping =",num1)
+print("second number after swaping =",num2)

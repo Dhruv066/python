@@ -1,0 +1,73 @@
+import speech_recognition as sr
+import pyttsx3
+import datetime
+import wikipedia
+import webbrowser
+
+# initialize voice engine
+engine = pyttsx3.init()
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+def take_command():
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")
+        command = r.recognize_google(audio, language='en-in')
+        print("You said:", command)
+        return command.lower()
+
+    except:
+        print("Say that again please...")
+        return "none"
+
+
+def wish():
+    hour = int(datetime.datetime.now().hour)
+
+    if hour < 12:
+        speak("Good Morning")
+
+    elif hour < 18:
+        speak("Good Afternoon")
+
+    else:
+        speak("Good Evening")
+
+    speak("I am your personal assistant. How can I help you?")
+
+
+wish()
+
+while True:
+
+    command = take_command()
+
+    if "wikipedia" in command:
+        speak("Searching Wikipedia")
+        command = command.replace("wikipedia", "")
+        result = wikipedia.summary(command, sentences=2)
+        speak(result)
+
+    elif "open youtube" in command:
+        webbrowser.open("https://youtube.com")
+
+
+    elif "open google" in command:
+        webbrowser.open("https://google.com")
+
+    elif "time" in command:
+        time = datetime.datetime.now().strftime("%H:%M:%S")
+        speak("The time is " + time)
+
+    elif "stop" in command:
+        speak("Goodbye")
+        break
