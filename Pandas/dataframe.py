@@ -12,3 +12,5 @@ df = pd.DataFrame(
         }
     )
 print(df["Age"])
+print(df["Age"].max())
+print(df.describe())
