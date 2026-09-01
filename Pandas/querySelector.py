@@ -4,3 +4,4 @@ f= pd.DataFrame(df)
 print(f.columns)
 aqiVal= 25
 print(f.query("temperature>@aqiVal & aqi>100 & city=='New York'")[["city","temperature"]])
+print(f.query("temperature < @aqiVal | city =='Delhi'"))[["city"]]
