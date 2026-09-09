@@ -17,4 +17,15 @@ df2["Age"]=df2["Age"].fillna(50) #fills the NaN values with 50
 #print(df2.sort_values(["Salary","Age"])) #here the values will be sorted first on the  basis of the salary and if the salary is same then values will gwt sorted on tha basis of the age 
 sorted_df=df2.sort_values("Salary")
 sorted_df=sorted_df.reset_index()
+# if no data preservation is required than set drop= true 
 print(sorted_df)
+
+# ranking 
+sorted_df["Ranking"]=sorted_df["Salary"].rank(ascending=False , method="dense")# it asign a new column and set rank in it on the basis of the Salary
+
+# print(sorted_df)
+
+
+#reordering the columns 
+
+print(sorted_df[["Age","Salary","Gender","New_income"]])
