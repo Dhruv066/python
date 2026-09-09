@@ -29,3 +29,11 @@ sorted_df["Ranking"]=sorted_df["Salary"].rank(ascending=False , method="dense")#
 #reordering the columns 
 
 print(sorted_df[["Age","Salary","Gender","New_income"]])
+
+#ordering the column
+
+new_col_order = [col for col in sorted_df.columns if col!="Id"]+["Id"]
+
+print(new_col_order)
+print()
+print(sorted_df[new_col_order])
